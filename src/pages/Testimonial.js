@@ -83,7 +83,7 @@ const Testimonial = () => {
                     gutterBottom
                     sx={{
                         color: theme.palette.mode === "dark" ? "#ffcc00" : "#1976d2",
-                        paddingTop: { xs: "60px", md: "80px" },
+                        paddingTop: { xs: "60px", md: "60px" },
                     }}
                 >
                     Testimonials <motion.span variants={emojiVariants} initial="hidden" animate="visible" style={{ display: "inline-block" }}>

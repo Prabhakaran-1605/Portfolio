@@ -66,7 +66,7 @@ const emojiVariants = {
 };
 
     return (
-        <Container maxWidth="lg" sx={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", py: 4 }}>
+        <Container maxWidth="lg" sx={{ display: "flex", alignItems: "center", justifyContent: "center", py: 4 }}>
             <Box
                 sx={{
                     width: "100%",

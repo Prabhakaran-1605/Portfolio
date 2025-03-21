@@ -17,7 +17,14 @@ function About() {
     };
     
     return (
-        <Container sx={{ minHeight: "100vh", paddingTop: 8, display: "flex", alignItems: "center" }}>
+        <Container
+        sx={{
+          paddingTop: 8,
+          display: "flex",
+          alignItems: "center"
+        }}
+      >
+      
             <motion.div 
                 initial={{ opacity: 0, y: 50 }} 
                 animate={{ opacity: 1, y: 0 }} 
@@ -33,7 +40,7 @@ function About() {
                             alt="Profile"
                             sx={{
                                 width: "100%",
-                                maxWidth: 300,
+                                maxWidth: 280,
                                 borderRadius: 2,
                                 boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
                             }}

@@ -7,7 +7,7 @@ const projects = [
 
 function Projects() {
     return (
-        <Container sx={{ minHeight: "100vh", paddingTop: 8 }}>
+        <Container sx={{ paddingTop: 8 }}>
             <Typography variant="h4">Projects</Typography>
             <Grid container spacing={3}>
                 {projects.map((project, index) => (

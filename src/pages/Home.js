@@ -18,7 +18,16 @@ function Home() {
         const theme = useTheme();
         const isDarkMode = theme.palette.mode === "dark";
     return (
-        <Container sx={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", paddingTop: 10 }}>
+        <Container
+        id="home"
+        sx={{
+            marginTop: "60px",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          py: 10, // consistent vertical padding
+        }}
+      >
             <Grid container spacing={4} alignItems="center">
                 
                 {/* Left Side: Animated Text Content */}

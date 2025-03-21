@@ -37,7 +37,7 @@ function Experience() {
     const isDarkMode = theme.palette.mode === "dark";
 
     return (
-        <Container sx={{ minHeight: "100vh", paddingTop: 8 }}>
+        <Container sx={{ paddingTop: 8 }}>
             {/* Section Title */}
             <Typography
                 variant="h4"

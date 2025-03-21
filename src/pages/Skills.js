@@ -35,7 +35,7 @@ function Skills() {
     const isDarkMode = theme.palette.mode === "dark"; // Check if dark mode is enabled
 
     return (
-        <Container sx={{ minHeight: "100vh", paddingTop: 8 }}>
+        <Container sx={{ paddingTop: 8 }}>
             {/* Section Title */}
             <Typography 
                 variant="h4" 

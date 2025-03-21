@@ -82,12 +82,30 @@ function App() {
 
             <Navbar scrollToSection={scrollToSection} refs={{ homeRef, aboutRef, projectsRef, experienceRef, skillsRef, testimonialRef, contactRef }} />
             
-            <Box ref={homeRef}><Home /></Box>
-            <Box ref={aboutRef}><About /></Box>
-            <Box ref={experienceRef}><Experience /></Box>
-            <Box ref={skillsRef}><Skills /></Box>
-            <Box ref={testimonialRef}><Testimonial /></Box>
-            <Box ref={contactRef}><Contact /></Box>
+            <Box ref={homeRef} sx={{ scrollMarginTop: { xs: '70px', md: '80px' } }}>
+  <Home />
+</Box>
+
+<Box ref={aboutRef} sx={{ scrollMarginTop: { xs: '70px', md: '80px' } }}>
+  <About />
+</Box>
+
+<Box ref={experienceRef} sx={{ scrollMarginTop: { xs: '15px', md: '15px' } }}>
+  <Experience />
+</Box>
+
+<Box ref={skillsRef} sx={{ scrollMarginTop: { xs: '15px', md: '15px' } }}>
+  <Skills />
+</Box>
+
+<Box ref={testimonialRef} sx={{ scrollMarginTop: { xs: '5px', md: '5px' } }}>
+  <Testimonial />
+</Box>
+
+<Box ref={contactRef} sx={{ scrollMarginTop: { xs: '5px', md: '5px' } }}>
+  <Contact />
+</Box>
+
             <Footer scrollToSection={scrollToSection} refs={{ aboutRef, skillsRef, testimonialRef, contactRef }} />
 
             {/* Vibrant Theme Toggle Logo */}

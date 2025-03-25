@@ -18,7 +18,7 @@ const testimonials = [
     {
         name: "Haseena",
         role: "Frontend Engineer",
-        feedback: "With 2 years of experience in MERN development, he quickly understands new concepts and implements them efficiently. His problem-solving ability, adaptability, and willingness to support others make him a great asset to any team.",
+        feedback: "He quickly understands new concepts and implements them efficiently. He is always eager to learn and improve, and he also helps juniors whenever they get struck. His problem-solving ability, adaptability, and willingness to support others make him a great asset to any team.",
         image: "https://cdn-icons-png.flaticon.com/512/4140/4140047.png",
     },
     {
@@ -123,50 +123,50 @@ const Testimonial = () => {
                             transition={{ duration: 0.5, delay: index * 0.2 }}
                         >
                             <Paper
-                                elevation={5}
-                                sx={{
-                                    padding: 2,
-                                    borderRadius: 5,
-                                    background: theme.palette.mode === "dark" ? "#1e1e1e" : "#fff",
-                                    color: theme.palette.mode === "dark" ? "#fff" : "#000",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    textAlign: "left",
-                                    alignItems: "flex-start",
-                                    justifyContent: "flex-start",
-                                    minHeight: "180px",
-                                    maxHeight: "250px",
-                                    overflow: "hidden",
-                                }}
-                            >
-                                <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
-                                    <Avatar
-                                        src={testimonial.image}
-                                        alt={testimonial.name}
-                                        sx={{ width: 45, height: 45, mr: 1 }}
-                                    />
-                                    <Box>
-                                        <Typography variant="body1" fontWeight="bold">
-                                            {testimonial.name}
-                                        </Typography>
-                                        <Typography variant="body2" sx={{ color: "gray" }}>
-                                            {testimonial.role}
-                                        </Typography>
-                                    </Box>
-                                </Box>
+    elevation={5}
+    sx={{
+        padding: 2,
+        borderRadius: 5,
+        background: theme.palette.mode === "dark" ? "#1e1e1e" : "#fff",
+        color: theme.palette.mode === "dark" ? "#fff" : "#000",
+        display: "flex",
+        flexDirection: "column",
+        textAlign: "left",
+        alignItems: "flex-start",
+        justifyContent: "space-between",
+        minHeight: "200px", // Ensures equal height for all cards
+    }}
+>
+    <Box sx={{ display: "flex", alignItems: "center", mb: 1 }}>
+        <Avatar
+            src={testimonial.image}
+            alt={testimonial.name}
+            sx={{ width: 45, height: 45, mr: 1 }}
+        />
+        <Box>
+            <Typography variant="body1" fontWeight="bold">
+                {testimonial.name}
+            </Typography>
+            <Typography variant="body2" sx={{ color: "gray" }}>
+                {testimonial.role}
+            </Typography>
+        </Box>
+    </Box>
 
-                                <Typography
-                                    variant="body2"
-                                    sx={{
-                                        fontSize: "13px",
-                                        wordBreak: "break-word",
-                                        maxWidth: "100%",
-                                        overflowWrap: "break-word",
-                                    }}
-                                >
-                                    "{testimonial.feedback}"
-                                </Typography>
-                            </Paper>
+    <Typography
+        variant="body2"
+        sx={{
+            fontSize: "13px",
+            wordBreak: "break-word",
+            maxWidth: "100%",
+            overflowWrap: "break-word",
+            flexGrow: 1, // Makes sure content stretches to fill available space
+        }}
+    >
+        "{testimonial.feedback}"
+    </Typography>
+</Paper>
+
                         </motion.div>
                     ))}
                 </Box>

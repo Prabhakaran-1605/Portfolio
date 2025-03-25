@@ -62,7 +62,7 @@ function About() {
 
                         {/* Summary */}
                         <Typography variant="body1" paragraph>
-                            I am a <strong>MERN Stack Developer</strong> with over <strong>2 years of experience</strong> 
+                            I am a <strong>MERN Stack Developer</strong> with over <strong>2+ years of experience </strong> 
                             in developing scalable and user-friendly web applications. With expertise in 
                             <strong> React.js, Node.js, Express.js, MongoDB</strong>, and modern frontend technologies, 
                             I strive to build high-performance applications that solve real-world problems.

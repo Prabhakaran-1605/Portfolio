@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Typography, Grid, Paper, Box, useTheme } from "@mui/material";
 import { motion } from "framer-motion";
 import { 
-    SiHtml5, SiCss3, SiGithub, SiJsonwebtokens, // Newly Added Icons
+    SiHtml5, SiCss3, SiGithub, SiJsonwebtokens,
     SiJavascript, SiReact, SiNodedotjs, SiExpress, SiMongodb, SiMysql, SiRedux, 
     SiTypescript, SiMui, SiBootstrap 
 } from "react-icons/si";
@@ -16,7 +16,7 @@ const skills = [
     { name: "Node.js", icon: <SiNodedotjs />, color: "#339933" },
     { name: "Express.js", icon: <SiExpress />, color: "#ff9999" },
     { name: "MongoDB", icon: <SiMongodb />, color: "#99b3ff" },
-    { name: "MySQL", icon: <SiMysql />, color: "#99ffff" },
+    { name: "MySQL", icon: <SiMysql />, color: "#1ba49b" },
     { name: "Redux Toolkit", icon: <SiRedux />, color: "#764ABC" },
     { name: "TypeScript", icon: <SiTypescript />, color: "#ef2708" },
     { name: "GitHub", icon: <SiGithub />, color: "#72b83f" },
@@ -53,38 +53,45 @@ function Skills() {
                                             </motion.span>
             </Typography>
 
-            {/* Skills Grid */}
             <Grid container spacing={3} justifyContent="center">
                 {skills.map((skill, index) => (
                     <Grid item key={index} xs={6} sm={4} md={3} lg={2}>
-                        <Paper 
-                            elevation={6} 
-                            sx={{ 
-                                padding: 3, 
-                                textAlign: "center", 
-                                background: isDarkMode 
+                        <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <Paper 
+                                elevation={6} 
+                                sx={{ 
+                                    padding: 3, 
+                                    textAlign: "center", 
+                                    background: isDarkMode 
                                     ? `linear-gradient(135deg, ${skill.color} 30%, #333 100%)` // Dark mode gradient
                                     : `linear-gradient(135deg, ${skill.color} 30%, #ffffff 100%)`, // Light mode gradient
-                                color: isDarkMode ? "#fff" : "#333",
-                                borderRadius: 3,
-                                boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)"
-                            }}
-                        >
+                                    color: isDarkMode ? "#fff" : "#333",
+                                    borderRadius: 3,
+                                    boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.2)",
+                                    transition: "background 0.4s ease-in-out",
+                                    '&:hover': {
+                                        background: `linear-gradient(135deg, ${skill.color} 50%, #444 100%)`,
+                                    },
+                                }}
+                            >
                             {/* Animated Icon */}
-                            <Box sx={{ fontSize: "3rem" }}>
-                                <motion.div 
-                                    initial={{ scale: 0.8, opacity: 0 }} 
-                                    animate={{ scale: 1, opacity: 1 }} 
+                                <Box sx={{ fontSize: "3rem" }}>
+                                    <motion.div 
+                                        initial={{ scale: 0.8, opacity: 0 }} 
+                                        animate={{ scale: 1, opacity: 1 }} 
                                     whileHover={{ scale: 1.2, rotate: 10 }} 
-                                    transition={{ duration: 0.4, ease: "easeInOut" }}
-                                >
-                                    {skill.icon}
-                                </motion.div>
-                            </Box>
+                                        transition={{ duration: 0.4, ease: "easeInOut" }}
+                                    >
+                                        {skill.icon}
+                                    </motion.div>
+                                </Box>
 
                             {/* Animated Skill Name - Continuous Animation */}
-                            <motion.div
-                                initial={{ opacity: 1 }}
+                                <motion.div
+                                    initial={{ opacity: 1 }}
                                 animate={{ 
                                     scale: [1, 1.1, 1], // Scale effect
                                     color: ["#333", "#000", "#333"], // Color transition effect
@@ -94,15 +101,16 @@ function Skills() {
                                     repeat: Infinity, 
                                     ease: "easeInOut" 
                                 }}
-                            >
-                                <Typography 
-                                    variant="subtitle1" 
-                                    sx={{ fontWeight: "bold", fontSize: "1.1rem" ,color: isDarkMode ? "#fff" : "#333",}}
                                 >
-                                    {skill.name}
-                                </Typography>
-                            </motion.div>
-                        </Paper>
+                                    <Typography 
+                                        variant="subtitle1" 
+                                    sx={{ fontWeight: "bold", fontSize: "1.1rem" ,color: isDarkMode ? "#fff" : "#333",}}
+                                    >
+                                        {skill.name}
+                                    </Typography>
+                                </motion.div>
+                            </Paper>
+                        </motion.div>
                     </Grid>
                 ))}
             </Grid>

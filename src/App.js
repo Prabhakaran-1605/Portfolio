@@ -102,7 +102,7 @@ function App() {
   <Testimonial />
 </Box>
 
-<Box ref={contactRef} sx={{ scrollMarginTop: { xs: '5px', md: '5px' } }}>
+<Box ref={contactRef} sx={{ scrollMarginTop: { xs: '75px', md: '75px' } }}>
   <Contact />
 </Box>
 

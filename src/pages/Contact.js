@@ -1,5 +1,16 @@
 import React, { useState } from "react";
-import { Container, Typography, TextField, Button, Box, Grid, useTheme, Snackbar, SnackbarContent } from "@mui/material";
+import {
+  Container,
+  Typography,
+  TextField,
+  Button,
+  Box,
+  Grid,
+  Snackbar,
+  SnackbarContent,
+  IconButton,
+  useTheme,
+} from "@mui/material";
 import { Email, Phone } from "@mui/icons-material";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import InstagramIcon from "@mui/icons-material/Instagram";
@@ -7,201 +18,224 @@ import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import emailjs from "@emailjs/browser";
 import { motion } from "framer-motion";
 
-function Contact() {
-    const theme = useTheme();
-    const isDarkMode = theme.palette.mode === "dark";
-
-    const [formData, setFormData] = useState({
-        name: "",
-        email: "",
-        phone: "",
-        message: "",
-    });
-
-    const [openSnackbar, setOpenSnackbar] = useState(false);
-    const [statusMessage, setStatusMessage] = useState("");
-
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        // Validate input fields
-        if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-            setStatusMessage("Please fill all required fields.");
-            setOpenSnackbar(true);
-            return;
-        }
-
-        emailjs
-            .send(
-                'service_26r0i0b', // Replace with EmailJS Service ID
-                'template_bya2hpr', // Replace with EmailJS Template ID
-                formData,
-                '9GJ6eTHTpGXFRalR-' // Replace with EmailJS Public Key
-            )
-            .then(
-                () => {
-                    setStatusMessage("Message sent successfully!");
-                    setOpenSnackbar(true);
-                    setFormData({ name: "", email: "", phone: "", message: "" }); // Clear form after success
-                },
-                () => {
-                    setStatusMessage("Failed to send message. Try again.");
-                    setOpenSnackbar(true);
-                }
-            );
-    };
-
-    // Enhanced emoji animation (subtle pulse effect)
 const emojiVariants = {
-    hidden: { opacity: 0, scale: 0.5 },
-    visible: {
-        opacity: 1,
-        scale: [1, 1.2, 1], // Gentle pop effect
-        transition: { duration: 1, ease: "easeOut", repeat: Infinity, repeatType: "reverse" },
-    },
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    scale: [1, 1.2, 1],
+    transition: { duration: 1.2, repeat: Infinity, ease: "easeInOut" },
+  },
 };
 
-    return (
-        <Container maxWidth="lg" sx={{ display: "flex", alignItems: "center", justifyContent: "center", py: 4 }}>
+const Contact = () => {
+  const theme = useTheme();
+  const isDarkMode = theme.palette.mode === "dark";
+
+  const [formData, setFormData] = useState({ name: "", email: "", phone: "", message: "" });
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.message) {
+      setStatusMessage("Please fill in all required fields.");
+      setOpenSnackbar(true);
+      return;
+    }
+
+    emailjs
+      .send(
+        "service_26r0i0b",
+        "template_bya2hpr",
+        formData,
+        "9GJ6eTHTpGXFRalR-"
+      )
+      .then(
+        () => {
+          setStatusMessage("Message sent successfully!");
+          setFormData({ name: "", email: "", phone: "", message: "" });
+          setOpenSnackbar(true);
+        },
+        () => {
+          setStatusMessage("Failed to send message. Try again.");
+          setOpenSnackbar(true);
+        }
+      );
+  };
+
+  return (
+    <Container maxWidth="xl" sx={{ my: 8 }}>
+      <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}>
+        <Box
+          sx={{
+            maxWidth: "1100px",
+            mx: "auto",
+          }}
+        >
+          <Typography
+            variant="h4"
+            align="center"
+            fontWeight="bold"
+            gutterBottom
+            sx={{ color: isDarkMode ? "#ffcc00" : "#1976d2" }}
+          >
+            Contact Us{" "}
+            <motion.span variants={emojiVariants} initial="hidden" animate="visible" style={{ display: "inline-block" }}>
+            ✉️
+            </motion.span>
+          </Typography>
+
+          <Grid container spacing={4}>
+            {/* Left Contact Info */}
+            <Grid item xs={12} md={5}>
+  <Box
+    sx={{
+      border: `1px solid ${isDarkMode ? "#444" : "#ccc"}`,
+      borderRadius: 3,
+      p: 3,
+      backgroundColor: isDarkMode ? "#1e1e1e" : "#fafafa",
+      boxShadow: isDarkMode
+        ? "0 2px 10px rgba(0,0,0,0.4)"
+        : "0 2px 12px rgba(0,0,0,0.05)",
+      height: "100%",
+    }}
+  >
+    <Typography variant="h6" fontWeight="bold" gutterBottom>
+      Contact Information
+    </Typography>
+    <Typography variant="body2" sx={{ mb: 3, color: isDarkMode ? "#aaa" : "#666" }}>
+      We'd love to hear from you! Whether you have a question, want to start a project, or just say hello—feel free to reach out.
+    </Typography>
+
+    <Box display="flex" alignItems="center" mb={2}>
+      <Phone sx={{ mr: 1, color: isDarkMode ? "#ff4081" : "#1976d2" }} /> +91 7708819449
+    </Box>
+    <Box display="flex" alignItems="center">
+      <Email sx={{ mr: 1, color: isDarkMode ? "#ff4081" : "#1976d2" }} /> 1605prabhu@gmail.com
+    </Box>
+
+    <Box mt={4}>
+      <Typography variant="body2" mb={1}>Follow us</Typography>
+      <Box display="flex" gap={2}>
+        <IconButton sx={{ color: isDarkMode ? "#fff" : "#333", "&:hover": { color: "#3b5998" } }}>
+          <FacebookIcon />
+        </IconButton>
+        <IconButton sx={{ color: isDarkMode ? "#fff" : "#333", "&:hover": { color: "#E4405F" } }}>
+          <InstagramIcon />
+        </IconButton>
+        <IconButton sx={{ color: isDarkMode ? "#fff" : "#333", "&:hover": { color: "#0e76a8" } }}>
+          <LinkedInIcon />
+        </IconButton>
+      </Box>
+    </Box>
+  </Box>
+</Grid>
+
+            {/* Right Form */}
+            <Grid item xs={12} md={7}>
             <Box
-                sx={{
-                    width: "100%",
-                    backgroundColor: isDarkMode ? "#1e1e1e" : "#f5f5f5",
-                    borderRadius: 2,
-                    color: isDarkMode ? "#fff" : "#000",
-                    padding: 6,
-                }}
-            >
-                {/* Contact Title */}
-                <Typography
-                    variant="h4"
-                    sx={{
-                        textAlign: "center",
-                        fontWeight: "bold",
-                        color: isDarkMode ? "#ffcc00" : "#1976d2",
-                        mb: 11,
-                    }}
-                >
-                    Contact  <motion.span variants={emojiVariants} initial="hidden" animate="visible" style={{ display: "inline-block" }}>
-        💬
-    </motion.span>
-                </Typography>
-
-                <Grid container spacing={6}>
-                    {/* Left Side: Contact Information */}
-                    <Grid
-                        item
-                        xs={12}
-                        md={5}
-                        sx={{
-                            background: isDarkMode ? "#30004d" : "#30004d",
-                            color: "#fff",
-                            padding: 4,
-                            borderRadius: 3,
-                        }}
-                    >
-                        <Typography variant="h5" sx={{ fontWeight: "bold", mb: 1 }}>
-                            Contact Information
-                        </Typography>
-                        <Typography variant="body2" sx={{ mb: 3 }}>
-                            Fill up the form and we will get back to you within 24 hours.
-                        </Typography>
-
-                        <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                            <Phone sx={{ color: "#ff4081", mr: 1 }} />
-                            <Typography variant="body1">+91 7708819449</Typography>
-                        </Box>
-                        <Box sx={{ display: "flex", alignItems: "center", mb: 3 }}>
-                            <Email sx={{ color: "#ff4081", mr: 1 }} />
-                            <Typography variant="body1">1605prabhu@gmail.com</Typography>
-                        </Box>
-
-                        <Box sx={{ display: "flex", justifyContent: "center", mb: 3 }}>
-                            <Box sx={{ width: 40, height: 40, borderRadius: "50%", background: "#b300a3", mx: 1 }} />
-                            <Box sx={{ width: 20, height: 20, borderRadius: "50%", background: "#ff4081", mx: 1, alignSelf: "flex-end" }} />
-                        </Box>
-
-                        {/* Social Media Icons */}
-                        <Box sx={{ display: "flex", justifyContent: "center", gap: 3, mt: -2 }}>
-                            <FacebookIcon sx={{ cursor: "pointer", fontSize: 36, transition: "transform 0.3s ease, color 0.3s ease", "&:hover": { transform: "scale(1.2)", color: "#E4405F" } }} />
-                            <InstagramIcon sx={{ cursor: "pointer", fontSize: 36, transition: "transform 0.3s ease, color 0.3s ease", "&:hover": { transform: "scale(1.2)", color: "#E4405F" } }} />
-                            <LinkedInIcon sx={{ cursor: "pointer", fontSize: 36, transition: "transform 0.3s ease, color 0.3s ease", "&:hover": { transform: "scale(1.2)", color: "#E4405F" } }} />
-                        </Box>
-                    </Grid>
-
-                    {/* Right Side: Contact Form */}
-                    <Grid item xs={12} md={7} sx={{ background: isDarkMode ? "#121212" : "#fff", padding: 4, borderRadius: 3 }}>
-                        <form onSubmit={handleSubmit}>
-                            <TextField
-                                fullWidth
-                                label="Name"
-                                name="name"
-                                variant="standard"
-                                value={formData.name}
-                                onChange={handleChange}
-                                sx={{ mb: 2, borderBottom: "2px solid #800080" }}
-                                required
-                            />
-                            <TextField
-                                fullWidth
-                                label="Email"
-                                name="email"
-                                variant="standard"
-                                value={formData.email}
-                                onChange={handleChange}
-                                sx={{ mb: 2, borderBottom: "2px solid #800080" }}
-                                required
-                            />
-                            <TextField
-                                fullWidth
-                                label="Phone"
-                                name="phone"
-                                variant="standard"
-                                value={formData.phone}
-                                onChange={handleChange}
-                                sx={{ mb: 2, borderBottom: "2px solid #800080" }}
-                            />
-                            <TextField
-                                fullWidth
-                                label="Message"
-                                name="message"
-                                variant="standard"
-                                placeholder="Write your message"
-                                multiline
-                                rows={4}
-                                value={formData.message}
-                                onChange={handleChange}
-                                sx={{ mb: 3, borderBottom: "2px solid #800080" }}
-                                required
-                            />
-
-                            {/* Submit Button */}
-                            <Button type="submit" variant="contained" sx={{ background: "#800080", "&:hover": { background: "#660066" } }}>
-                                Send Message
-                            </Button>
-                        </form>
-                    </Grid>
-                </Grid>
-            </Box>
-
-            {/* Snackbar for Status Messages */}
-            <Snackbar
-                open={openSnackbar}
-                autoHideDuration={3000} // Hides after 3 seconds
-                onClose={() => setOpenSnackbar(false)}
-                anchorOrigin={{ vertical: "top", horizontal: "right" }}
-            >
-                <SnackbarContent
-                    message={statusMessage}
-                    sx={{ backgroundColor: statusMessage.includes("successfully") ? "green" : "red", color: "white", borderRadius: "8px", padding: "12px 24px" }}
+    sx={{
+      border: `1px solid ${isDarkMode ? "#444" : "#ccc"}`,
+      borderRadius: 3,
+      p: 2,
+      backgroundColor: isDarkMode ? "#1e1e1e" : "#fafafa",
+      boxShadow: isDarkMode
+        ? "0 2px 10px rgba(0,0,0,0.4)"
+        : "0 2px 12px rgba(0,0,0,0.05)",
+      height: "100%",
+    }}
+  >
+              <form onSubmit={handleSubmit}>
+                <TextField
+                  fullWidth
+                  label="Name"
+                  name="name"
+                  variant="outlined"
+                  value={formData.name}
+                  onChange={handleChange}
+                  sx={{ mb: 3 }}
+                  required
                 />
-            </Snackbar>
-        </Container>
-    );
-}
+                <TextField
+                  fullWidth
+                  label="Email"
+                  name="email"
+                  variant="outlined"
+                  value={formData.email}
+                  onChange={handleChange}
+                  sx={{ mb: 3 }}
+                  required
+                />
+                <TextField
+                  fullWidth
+                  label="Phone"
+                  name="phone"
+                  variant="outlined"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  sx={{ mb: 3 }}
+                />
+                <TextField
+                  fullWidth
+                  label="Message"
+                  name="message"
+                  variant="outlined"
+                  multiline
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  sx={{ mb: 3 }}
+                  required
+                />
+
+                <Button
+                  type="submit"
+                  variant="contained"
+                  fullWidth
+                  sx={{
+                    py: 1.5,
+                    borderRadius: "30px",
+                    fontWeight: "bold",
+                    background: isDarkMode
+                      ? "linear-gradient(45deg, #ff4081, #ffcc00)"
+                      : "linear-gradient(45deg, #1976d2, #21cbf3)",
+                    color: "#fff",
+                    "&:hover": {
+                      opacity: 0.9,
+                    },
+                  }}
+                >
+                  Send Message
+                </Button>
+              </form>
+              </Box>    
+            </Grid>
+          </Grid>
+        </Box>
+      </motion.div>
+
+      {/* Snackbar Notification */}
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={2000}
+        onClose={() => setOpenSnackbar(false)}
+        anchorOrigin={{ vertical: "top", horizontal: "right" }}
+      >
+        <SnackbarContent
+          message={statusMessage}
+          sx={{
+            backgroundColor: statusMessage.includes("successfully") ? "green" : "#d32f2f",
+            color: "#fff",
+            borderRadius: 2,
+            px: 3,
+            py: 1,
+          }}
+        />
+      </Snackbar>
+    </Container>
+  );
+};
 
 export default Contact;

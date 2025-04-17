@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import {
   Container,
   Typography,
@@ -7,7 +6,7 @@ import {
   Box,
 } from "@mui/material";
 import { motion } from "framer-motion";
-import profilePic from "../assets/profile.jpg"; // Ensure you have an image
+import profilePic from "../assets/aboutImage.jpeg"; // Ensure you have an image
 
 // Animation variants for letter appearance
 const letterVariants = {
